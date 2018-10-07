@@ -16,11 +16,11 @@ Required python packages can be installed after the program download (see below)
 ### Download the program
 To download the code type:
 ```
-git clone 
+git clone https://github.com/loven-doo/wsgi_app_docker.git
 ```
 To download it from dev barnch type:
 ```
-git clone
+git clone https://github.com/loven-doo/wsgi_app_docker@dev
 ```
 Or you can download tar.gz archive of the code via github web interface
 
