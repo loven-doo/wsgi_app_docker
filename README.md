@@ -22,7 +22,7 @@ To download it from dev barnch type:
 ```
 git clone https://github.com/loven-doo/wsgi_app_docker@dev
 ```
-Or you can download tar.gz archive of the code via github web interface
+Or you can download archive of the code via github web interface
 
 ### Install required python packages
 ```
