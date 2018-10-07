@@ -4,6 +4,7 @@ Creates Docker image with Nginx, Gunicorn and Postgres
 ## Requirements
 Python >= 3.5.2  
 Docker  
+Docker Compose  
 Python packages:  
 - ...  
 
