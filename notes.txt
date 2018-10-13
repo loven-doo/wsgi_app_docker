@@ -1,1 +1,1 @@
-webapp is, for example, Django root dir with manage.py
+wsgi_app is directory where project parent dir should be mounted
