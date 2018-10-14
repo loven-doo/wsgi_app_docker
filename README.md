@@ -61,6 +61,8 @@ optional arguments:
 &nbsp;&nbsp; -bp BUILDDIR_PATH, --builddir-path BUILDDIR_PATH  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Path to the directory docker-compose to be run, default 'wsgi_app_composedir'  
   
+The example is in run_example.sh  
+  
 If you decide to stop the server type:
 ```
 docker-compose -f BUILDDIR_PATH/docker-compose.yml stop
