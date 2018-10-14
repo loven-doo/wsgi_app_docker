@@ -1,7 +1,8 @@
 import sys
 import argparse
 
-from constants import DEFAULT_PYTHON_VERSION, DEFAULT_SERVER_NAME, DEFAULT_APP_NAME, DEFAULT_NUM_WORKERS, DEFAULT_COMPOSE_DIR
+from constants import DEFAULT_PYTHON_VERSION, DEFAULT_SERVER_NAME, DEFAULT_APP_NAME, \
+    DEFAULT_NUM_WORKERS, DEFAULT_COMPOSE_DIR
 from compose import build
 
 
@@ -16,6 +17,16 @@ def _parse_cmd_args(*args):
                         "--wsgi-path",
                         help="Path to the WSGI module",
                         required=True)
+    parser.add_argument("-sp",
+                        "--static-path",
+                        help="Path to the static directory of the project (should be inside it), default '</PROJECT/PATH>/static'",
+                        required=False,
+                        default=None)
+    parser.add_argument("-mp",
+                        "--media-path",
+                        help="Path to the media directory of the project (should be inside it), default '</PROJECT/PATH>/media'",
+                        required=False,
+                        default=None)
     parser.add_argument("-rp",
                         "--requirements-path",
                         help="Path to the requirements file of wsgi app",
@@ -33,12 +44,12 @@ def _parse_cmd_args(*args):
                         default=DEFAULT_SERVER_NAME)
     parser.add_argument("-an",
                         "--app-name",
-                        help="WSGI application name",
+                        help="WSGI application name, default 'wsgi_app'",
                         required=False,
                         default=DEFAULT_APP_NAME)
     parser.add_argument("-nw",
                         "--num-workers",
-                        help="The number of workers for Gunicorn",
+                        help="The number of workers for Gunicorn, default 3",
                         required=False,
                         default=DEFAULT_NUM_WORKERS)
     parser.add_argument("-bp",

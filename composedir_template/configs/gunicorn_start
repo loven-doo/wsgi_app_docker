@@ -4,12 +4,14 @@ NAME=<APP_NAME>
 PROJECT_PATH=<MOUNTED_PROJECT_PATH>                # Name of the application
 NUM_WORKERS=<NUM_WORKERS>                          # How many worker processes should Gunicorn spawn
 WSGI_MODULE=<MOUNTED_WSGI_PATH>                    # WSGI module path
+LOGS_DIR=<NGINX_LOGS>                              # Path to logs dir
 SOCKFILE=/wsgi_app/run/gunicorn.sock               # Communication using this unix socket
 
 cd $PROJECT_PATH
-# Creates the run directory if it doesn't exist
+# Creates the run and logs directories if they don't exist
 RUNDIR=$(dirname $SOCKFILE)
 test -d $RUNDIR || mkdir -p $RUNDIR
+test -d $LOGS_DIR || mkdir -p $LOGS_DIR
 
 # Start Gunicorn
 exec gunicorn ${WSGI_MODULE}:application \
