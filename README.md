@@ -7,6 +7,8 @@ Docker
 Docker Compose  
 Python packages:  
 - pyaml  
+  
+Tips for environment configuration are below
 
 ## How to use
 
@@ -23,10 +25,27 @@ Or you can download archive of the code via github web interface
 
 ### Install required python packages
 ```
-pip install -r wsgi_app_docker/requirements.txt --upgrade
+pip3 install -r wsgi_app_docker/requirements.txt --upgrade
 ```
 
 ### Run the program
 ```
-python wsgi_app_docker [options]
+python3 wsgi_app_docker -pp ... -wp ... [options]
 ```
+
+If you decide to stop the server type:
+```
+docker-compose -f <> stop
+```
+
+To resume the server type:
+```
+docker-compose -f <> start
+```
+
+## Tips for environment configuration
+### Docker
+
+### Postgres
+
+### Django
