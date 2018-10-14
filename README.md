@@ -33,8 +33,8 @@ pip3 install -r wsgi_app_docker/requirements.txt --upgrade
 python3 wsgi_app_docker -pp ... -wp ... [options]
 ```
 usage: wsgi_app_docker [-h] -pp PROJECT_PATH -wp WSGI_PATH [-sp STATIC_PATH] [-mp MEDIA_PATH]  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-rp REQUIREMENTS_PATH] [-pyv PYTHON_VERSION] [-sn SERVER_NAME]  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-an APP_NAME] [-nw NUM_WORKERS] [-bp BUILDDIR_PATH]  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-rp REQUIREMENTS_PATH] [-pyv PYTHON_VERSION] [-sn SERVER_NAME] [-an APP_NAME]  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-nw NUM_WORKERS] [-bp BUILDDIR_PATH]  
 
 optional arguments:  
   -h, --help            show this help message and exit  
