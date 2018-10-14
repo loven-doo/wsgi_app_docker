@@ -59,6 +59,7 @@ optional arguments:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The number of workers for Gunicorn, default 3  
 &nbsp;&nbsp; -bp BUILDDIR_PATH, --builddir-path BUILDDIR_PATH  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Path to the directory docker-compose to be run, default 'wsgi_app_composedir'  
+  
 If you decide to stop the server type:
 ```
 docker-compose -f BUILDDIR_PATH/docker-compose.yml stop
