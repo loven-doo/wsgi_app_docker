@@ -1,8 +1,8 @@
 import sys
 import argparse
 
-from .constants import DEFAULT_PYTHON_VERSION, DEFAULT_SERVER_NAME, DEFAULT_APP_NAME, DEFAULT_NUM_WORKERS, DEFAULT_COMPOSE_DIR
-from .compose import build
+from constants import DEFAULT_PYTHON_VERSION, DEFAULT_SERVER_NAME, DEFAULT_APP_NAME, DEFAULT_NUM_WORKERS, DEFAULT_COMPOSE_DIR
+from compose import build
 
 
 def _parse_cmd_args(*args):
@@ -21,7 +21,7 @@ def _parse_cmd_args(*args):
                         help="Path to the requirements file of wsgi app",
                         required=False,
                         default=None)
-    arser.add_argument("-pyv",
+    parser.add_argument("-pyv",
                         "--python-version",
                         help="Python version of WSGI application (only numbers), default '3.6'",
                         required=False,
@@ -54,7 +54,7 @@ def _parse_cmd_args(*args):
 
 def main():
     args_dict = _parse_cmd_args(*sys.argv[1:])
-    explore_genes(**args_dict)
+    build(**args_dict)
 
 
 if __name__ == "__main__":

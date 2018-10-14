@@ -1,10 +1,12 @@
 #!/bin/bash
 
-NAME=<APP_NAME>                                    # Name of the application
+NAME=<APP_NAME>
+PROJECT_PATH=<MOUNTED_PROJECT_PATH>                # Name of the application
 NUM_WORKERS=<NUM_WORKERS>                          # How many worker processes should Gunicorn spawn
 WSGI_MODULE=<MOUNTED_WSGI_PATH>                    # WSGI module path
 SOCKFILE=/wsgi_app/run/gunicorn.sock               # Communication using this unix socket
 
+cd $PROJECT_PATH
 # Creates the run directory if it doesn't exist
 RUNDIR=$(dirname $SOCKFILE)
 test -d $RUNDIR || mkdir -p $RUNDIR

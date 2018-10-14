@@ -1,1 +1,10 @@
-wsgi_app is directory where project parent dir should be mounted
+to see all docker images on the machine: docker images -a 
+to remove all docker images from machine: docker rmi -f $(docker images -a -q)
+to remove docker trash: docker system prune -a
+
+logs, static, media dirs should be created automaticaly if they are not exist for Nginx
+
+to doc: 
+  - tips for docker configuration (docker group, docker-compose, removing images);
+  - tips for postgres configuration
+  - tips for django configuration

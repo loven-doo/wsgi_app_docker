@@ -6,7 +6,7 @@ Python >= 3.5.2
 Docker  
 Docker Compose  
 Python packages:  
-- ...  
+- pyaml  
 
 ## How to use
 
@@ -18,10 +18,6 @@ Required python packages can be installed after the program download (see below)
 To download the code type:
 ```
 git clone https://github.com/loven-doo/wsgi_app_docker.git
-```
-To download it from dev barnch type:
-```
-git clone https://github.com/loven-doo/wsgi_app_docker@dev
 ```
 Or you can download archive of the code via github web interface
 

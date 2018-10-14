@@ -8,8 +8,8 @@ CONFIGS_DIR = 'configs'
 NGINX_CONF_DIR = os.path.join(CONFIGS_DIR, 'nginx', 'conf.d')
 REQUIREMENTS_NAME = 'requirements.txt'
 GUNICORN_START = 'gunicorn_start'
-DOCKERFILE = "Dockerfile'
-DOCKER_COMPOSE = "docker-compose.yml"
+DOCKERFILE = 'Dockerfile'
+DOCKER_COMPOSE = 'docker-compose.yml'
 
 DEFAULT_PYTHON_VERSION = '3.6'
 DEFAULT_SERVER_NAME = 'localhost'
