@@ -32,36 +32,31 @@ pip3 install -r wsgi_app_docker/requirements.txt --upgrade
 ```
 python3 wsgi_app_docker -pp ... -wp ... [options]
 ```
-usage: wsgi_app_docker [-h] -pp PROJECT_PATH -wp WSGI_PATH [-sp STATIC_PATH]
-                       [-mp MEDIA_PATH] [-rp REQUIREMENTS_PATH]
-                       [-pyv PYTHON_VERSION] [-sn SERVER_NAME] [-an APP_NAME]
-                       [-nw NUM_WORKERS] [-bp BUILDDIR_PATH]
+usage: wsgi_app_docker [-h] -pp PROJECT_PATH -wp WSGI_PATH [-sp STATIC_PATH] [-mp MEDIA_PATH] [-rp REQUIREMENTS_PATH]  
+                       [-pyv PYTHON_VERSION] [-sn SERVER_NAME] [-an APP_NAME] [-nw NUM_WORKERS] [-bp BUILDDIR_PATH]  
 
-optional arguments:
-  -h, --help            show this help message and exit
-  -pp PROJECT_PATH, --project-path PROJECT_PATH
-                        Path to the wsgi app project directory
-  -wp WSGI_PATH, --wsgi-path WSGI_PATH
-                        Path to the WSGI module
-  -sp STATIC_PATH, --static-path STATIC_PATH
-                        Path to the static directory of the project (should be
-                        inside it), default '</PROJECT/PATH>/static'
-  -mp MEDIA_PATH, --media-path MEDIA_PATH
-                        Path to the media directory of the project (should be
-                        inside it), default '</PROJECT/PATH>/media'
-  -rp REQUIREMENTS_PATH, --requirements-path REQUIREMENTS_PATH
-                        Path to the requirements file of wsgi app
-  -pyv PYTHON_VERSION, --python-version PYTHON_VERSION
-                        Python version of WSGI application (only numbers),
-                        default '3.6'
-  -sn SERVER_NAME, --server-name SERVER_NAME
-                        Server name (in Nginx conf), defaut 'localhost'
-  -an APP_NAME, --app-name APP_NAME
-                        WSGI application name, default 'wsgi_app'
-  -nw NUM_WORKERS, --num-workers NUM_WORKERS
-                        The number of workers for Gunicorn, default 3
-  -bp BUILDDIR_PATH, --builddir-path BUILDDIR_PATH
-                        Path to the directory docker-compose to be run, default 
+optional arguments:  
+  -h, --help            show this help message and exit  
+  -pp PROJECT_PATH, --project-path PROJECT_PATH  
+                        Path to the wsgi app project directory  
+  -wp WSGI_PATH, --wsgi-path WSGI_PATH  
+                        Path to the WSGI module  
+  -sp STATIC_PATH, --static-path STATIC_PATH  
+                        Path to the static directory of the project (should be inside it), default '</PROJECT/PATH>/static'  
+  -mp MEDIA_PATH, --media-path MEDIA_PATH  
+                        Path to the media directory of the project (should be inside it), default '</PROJECT/PATH>/media'  
+  -rp REQUIREMENTS_PATH, --requirements-path REQUIREMENTS_PATH  
+                        Path to the requirements file of wsgi app  
+  -pyv PYTHON_VERSION, --python-version PYTHON_VERSION  
+                        Python version of WSGI application (only numbers), default '3.6'  
+  -sn SERVER_NAME, --server-name SERVER_NAME  
+                        Server name (in Nginx conf), defaut 'localhost'  
+  -an APP_NAME, --app-name APP_NAME  
+                        WSGI application name, default 'wsgi_app'  
+  -nw NUM_WORKERS, --num-workers NUM_WORKERS  
+                        The number of workers for Gunicorn, default 3  
+  -bp BUILDDIR_PATH, --builddir-path BUILDDIR_PATH  
+                        Path to the directory docker-compose to be run, default 'wsgi_app_composedir'  
 If you decide to stop the server type:
 ```
 docker-compose -f BUILDDIR_PATH/docker-compose.yml stop
