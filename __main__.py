@@ -54,7 +54,7 @@ def _parse_cmd_args(*args):
                         default=DEFAULT_NUM_WORKERS)
     parser.add_argument("-bp",
                         "--builddir-path",
-                        help="Path to the directory docker-compose to be run",
+                        help="Path to the directory docker-compose to be run, default 'wsgi_app_composedir'",
                         required=False,
                         default=DEFAULT_COMPOSE_DIR)
 
