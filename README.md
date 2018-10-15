@@ -81,11 +81,14 @@ sudo apt-get install docker docker.io docker-compose
 ```
 For systems without apt use other builtin package managers. Note that required packages can have other names  
   
-Add the user to a docker group:
+Add the user runs docker image to a docker group:
 ```
+  # create docker group if it has not done
+  # create the user if it has not been done
 
 ```
-### Postgres
+
+### PostgreSQL
 
 ### Django
 
