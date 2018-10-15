@@ -75,7 +75,16 @@ docker-compose -f BUILDDIR_PATH/docker-compose.yml start
 
 ## Tips for environment configuration
 ### Docker
+To install Docker on system with apt package manager type:
+```
+sudo apt-get install docker docker.io docker-compose
+```
+For systems without apt use other builtin package managers. Note that required packages can have other names  
+  
+Add the user to a docker group:
+```
 
+```
 ### Postgres
 
 ### Django
