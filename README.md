@@ -180,7 +180,7 @@ This command will seem to be not working, be patient - wait and the system will 
  $ sudo mkdir /mnt/shared
  $ sudo mount -t 9p -o trans=virtio host_shared /mnt/shared/ -oversion=9p2000.L
  ```
-If you need the filesystem for PRoot create archive (for example, .tar.gz) of the virtual filesystem and place it to directory where shared folder mounted (/mnt/shared/). The archive of filesystem should appear in the host directory that is shared with QEMU virtual machine.
+If you need the filesystem for PRoot create archive (for example, .tar.gz) of the virtual filesystem and place it to the directory where shared folder mounted (/mnt/shared/). The archive of filesystem should appear in the host directory that is shared with QEMU virtual machine.
 
 ### RPM packages
 Linux programs can be installed from rpm packages. Download required rpm package build for the system. Then use following bash script to unpack it:
