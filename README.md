@@ -87,21 +87,23 @@ sudo groupadd docker  # create docker group if it has not done
 sudo adduser <youruser>  # create the user if it has not been done
 sudo usermod -aG docker <youruser>
 ```
+Log out and log back in so that your group membership is re-evaluated  
+  
 To list all docker images on the machine type:
 ```
-
+docker images -a
 ```
 To remove an image type:
 ```
-
+docker rmi -f <image name or id>
 ```
 To remove all images type:
 ```
-
+docker rmi -f $(docker images -a)
 ```
 To clean the cache and remove not used images type:
 ```
-
+docker system prune -a
 ```
 ### PostgreSQL
 
