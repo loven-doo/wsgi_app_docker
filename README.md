@@ -138,3 +138,9 @@ $ python <PATH/TO/POJECT>/manage.py migrate
 ```
 ### Proot
 If you do not have the root access and the user is not in the docker group [proot](https://wiki.archlinux.org/index.php/PRoot) tool can be used to run another Linux system inside host system, and root access will be available for this system. Use [--kernel-release](https://github.com/proot-me/PRoot/blob/master/doc/proot/manual.txt) option for proot if the kernel vesrion of host sysytem is not compatible with docker.
+
+To install it type:
+```
+$ sudo apt-get install proot
+```
+or build it from [source](https://github.com/proot-me/PRoot) (do "make" in src/ folder).
