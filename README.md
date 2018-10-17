@@ -151,7 +151,7 @@ The best way to run command in proot filesystem:
 ```
 $ proot -r <path/to/filesystem> <comand>
 ```
-If you have no interner connection from proot filesystem (for example, 'unable to resolve host address' error running wget) try to put nameserver 8.8.8.8 to the first line of /etc/resolv.conf  
+If you have no internet connection from proot filesystem (for example, 'unable to resolve host address' error running wget) try to put nameserver 8.8.8.8 to the first line of /etc/resolv.conf  
 If the proot filesystem is old with support expired change repositories list for it (for example, for old Ubuntu vesions that are not currently supported, replace archive.ubuntu.com with old-releases.ubuntu.com in /etc/apt/sources.list)
 ### QEMU
 This tip is for x86_64 system building. However, it can be any system you need.  
