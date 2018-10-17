@@ -83,11 +83,26 @@ For systems without apt use other builtin package managers. Note that required p
   
 Add the user runs docker image to a docker group:
 ```
-  # create docker group if it has not done
-  # create the user if it has not been done
-
+sudo groupadd docker  # create docker group if it has not done
+sudo adduser <youruser>  # create the user if it has not been done
+sudo usermod -aG docker <youruser>
+```
+To list all docker images on the machine type:
 ```
 
+```
+To remove an image type:
+```
+
+```
+To remove all images type:
+```
+
+```
+To clean the cache and remove not used images type:
+```
+
+```
 ### PostgreSQL
 
 ### Django
