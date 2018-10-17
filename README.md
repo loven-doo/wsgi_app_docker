@@ -106,7 +106,7 @@ To clean the cache and remove not used images type:
 $ docker system prune -a
 ```
 ### PostgreSQL
-A database and a web application should be installed on different machines for the production but for the developing, a database can be installed on the machine with a web application.  
+The database and the web application should be installed on different machines for the production but for the developing, the database can be installed on the machine with the web application.  
   
 To install PostgreSQL type:
 ```
@@ -131,6 +131,10 @@ $
 ```
 
 ### Django
-
+If Django is used for the web application run commands below to create migrations in the database:
+```
+$ python3 <>/manage.py 
+$ 
+```
 ### Proot
 
