@@ -74,7 +74,7 @@ $ docker-compose -f BUILDDIR_PATH/docker-compose.yml start
 ```
 
 ## Tips for environment configuration
-The tips are for systems with apt package manager (Debian based). For systems without apt use other builtin package managers. Note that required packages can have other names.
+The tips are for systems with apt package manager (Debian based). For systems without apt use other builtin package managers. Note that required packages can have other names. If you do not have root permisions programs can be installed from rpm packages (see below).
 ### Docker
 To install Docker type:
 ```
@@ -143,4 +143,28 @@ To install it type:
 ```
 $ sudo apt-get install proot
 ```
-or build it from [source](https://github.com/proot-me/PRoot) (do "make" in src/ folder).
+or build it from [source](https://github.com/proot-me/PRoot) (do "make" in src/ folder).  
+  
+To create filesystem for proot you can use [qemu](https://www.qemu.org/):
+```
+.iso -> .img -> .tar.gz  
+```
+  
+The best way to run command in proot filesystem:
+```
+$ proot -r <path/to/filesystem> <comand>
+```
+  
+### RPM packages
+Linux programs can be installed from rpm packages. Download required rpm package build for the system. Then use following script to unpack it:
+```
+# $1 - rpm package path
+# $2 - installation dir path
+
+loc=$(pwd)
+cpio=$(basename $2).cpio
+rpm2cpio $1 > $cpio
+cd $2 && cpio -idv < $loc/$cpio
+rm $loc/$cpio
+```
+Note that a program in rpm package is build as it is located in /usr/. That is usr/ folder will be in installation folder. So the paths in configs should be fixed.
