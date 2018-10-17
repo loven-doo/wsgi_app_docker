@@ -125,7 +125,7 @@ Shall the new role be allowed to create databases? (y/n) n
 Shall the new role be allowed to create more new roles? (y/n) n
 postgres@name:~$
 
-postgres@name:~$ createdb --owner <your_app_user> <default_user_db_name>
+postgres@name:~$ createdb --owner <your_app_user> <user_default_db_name>
 postgres@name:~$ logout
 $
 ```
