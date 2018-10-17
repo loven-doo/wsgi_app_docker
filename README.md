@@ -158,20 +158,20 @@ This tip is for x86_64 system building. However, it can be any system you need.
   
 To install it type:
 ```
-sudo apt-get install qemu-kvm qemu virt-manager virt-viewer libvirt-bin
+$ sudo apt-get install qemu-kvm qemu virt-manager virt-viewer libvirt-bin
 ```
   
 Create virtual filesystem:
 ```
-qemu-img create <fs_name>.img <img_size>  # for example, <img_size> = 5G
+$ qemu-img create <fs_name>.img <img_size>  # for example, <img_size> = 5G
 ```
 Install Linux system .iso image into created filesystem:
 ```
-qemu-system-x86_64 -hda <fs_name>.img -boot d -cdrom <path/to/image>.iso -m <memory_amount>  # for eaxample <memory_amount> = 2G
+$ qemu-system-x86_64 -hda <fs_name>.img -boot d -cdrom <path/to/image>.iso -m <memory_amount>  # for eaxample <memory_amount> = 2G
 ```
 To run the filesystem type:
 ```
-qemu-system-x86_64 -hda <fs_name>.img -m <memoty_amount> -fsdev local,id=host_ubuntu,path=qemu_shared/,security_model=none
+$ qemu-system-x86_64 -hda <fs_name>.img -m <memoty_amount> -fsdev local,id=host_ubuntu,path=qemu_shared/,security_model=none
 ```
 .iso -> .img -> .tar.gz  
 
