@@ -14,7 +14,6 @@ services:
   web:
     build: .
     container_name: dj01
-#    command: bash -c "python /webapps/invite_user/invite/manage.py makemigrations && python /webapps/invite_user/invite/manage.py migrate && /configs/gunicorn_start"
     command: bash -c "/configs/gunicorn_start"
     volumes:
       - </PROJECT/PARENT/PATH>:/wsgi_app
