@@ -167,11 +167,11 @@ qemu-img create <fs_name>.img <img_size>  # for example, <img_size> = 5G
 ```
 Install Linux system .iso image into created filesystem:
 ```
-qemu-system-x86_64 -hda <fs_name>.img -boot d -cdrom <path/to/image>.iso -m <memory_amount>
+qemu-system-x86_64 -hda <fs_name>.img -boot d -cdrom <path/to/image>.iso -m <memory_amount>  # for eaxample <memory_amount> = 2G
 ```
 To run the filesystem type:
 ```
-
+qemu-system-x86_64 -hda <fs_name>.img -m <memoty_amount> -fsdev local,id=host_ubuntu,path=qemu_shared/,security_model=none
 ```
 .iso -> .img -> .tar.gz  
 
