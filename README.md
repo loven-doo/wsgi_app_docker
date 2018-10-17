@@ -19,18 +19,18 @@ Required python packages can be installed after the program download (see below)
 ### Download the program
 To download the code type:
 ```
-git clone https://github.com/loven-doo/wsgi_app_docker.git
+$ git clone https://github.com/loven-doo/wsgi_app_docker.git
 ```
 Or you can download archive of the code via github web interface
 
 ### Install required python packages
 ```
-pip3 install -r wsgi_app_docker/requirements.txt --upgrade
+$ pip3 install -r wsgi_app_docker/requirements.txt --upgrade
 ```
 
 ### Run the program
 ```
-python3 wsgi_app_docker -pp ... -wp ... [options]
+$ python3 wsgi_app_docker -pp ... -wp ... [options]
 ```
 usage:  
 &nbsp;&nbsp; wsgi_app_docker [-h] -pp PROJECT_PATH -wp WSGI_PATH [-sp STATIC_PATH] [-mp MEDIA_PATH]  
@@ -65,12 +65,12 @@ The example is in run_example.sh
   
 If you decide to stop the server type:
 ```
-docker-compose -f BUILDDIR_PATH/docker-compose.yml stop
+$ docker-compose -f BUILDDIR_PATH/docker-compose.yml stop
 ```
 
 To resume the server type:
 ```
-docker-compose -f BUILDDIR_PATH/docker-compose.yml start
+$ docker-compose -f BUILDDIR_PATH/docker-compose.yml start
 ```
 
 ## Tips for environment configuration
@@ -78,7 +78,7 @@ The tips are for systems with apt package manager (Debian based). For systems wi
 ### Docker
 To install Docker type:
 ```
-sudo apt-get install docker docker.io docker-compose
+$ sudo apt-get install docker docker.io docker-compose
 ```
 
 Add the user runs docker image to a docker group:
