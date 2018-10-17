@@ -156,7 +156,7 @@ $ proot -r <path/to/filesystem> <comand>
 ```
   
 ### RPM packages
-Linux programs can be installed from rpm packages. Download required rpm package build for the system. Then use following script to unpack it:
+Linux programs can be installed from rpm packages. Download required rpm package build for the system. Then use following bash script to unpack it:
 ```
 # $1 - rpm package path
 # $2 - installation dir path
