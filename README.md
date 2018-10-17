@@ -19,18 +19,18 @@ Required python packages can be installed after the program download (see below)
 ### Download the program
 To download the code type:
 ```
-git clone https://github.com/loven-doo/wsgi_app_docker.git
+$ git clone https://github.com/loven-doo/wsgi_app_docker.git
 ```
 Or you can download archive of the code via github web interface
 
 ### Install required python packages
 ```
-pip3 install -r wsgi_app_docker/requirements.txt --upgrade
+$ pip3 install -r wsgi_app_docker/requirements.txt --upgrade
 ```
 
 ### Run the program
 ```
-python3 wsgi_app_docker -pp ... -wp ... [options]
+$ python3 wsgi_app_docker -pp ... -wp ... [options]
 ```
 usage:  
 &nbsp;&nbsp; wsgi_app_docker [-h] -pp PROJECT_PATH -wp WSGI_PATH [-sp STATIC_PATH] [-mp MEDIA_PATH]  
@@ -65,17 +65,133 @@ The example is in run_example.sh
   
 If you decide to stop the server type:
 ```
-docker-compose -f BUILDDIR_PATH/docker-compose.yml stop
+$ docker-compose -f BUILDDIR_PATH/docker-compose.yml stop
 ```
 
 To resume the server type:
 ```
-docker-compose -f BUILDDIR_PATH/docker-compose.yml start
+$ docker-compose -f BUILDDIR_PATH/docker-compose.yml start
 ```
 
 ## Tips for environment configuration
+The tips are for systems with apt package manager (Debian based). For systems without apt use other builtin package managers. Note that required packages can have other names. If you do not have root permisions programs can be installed from rpm packages (see below).
 ### Docker
+To install Docker type:
+```
+$ sudo apt-get install docker docker.io docker-compose
+```
 
-### Postgres
+Add the user runs docker image to a docker group:
+```
+$ sudo groupadd docker  # create docker group if it has not done
+$ sudo adduser <youruser>  # create the user if it has not been done
+$ sudo usermod -aG docker <youruser>
+```
+Log out and log back in so that your group membership is re-evaluated  
+  
+To list all docker images on the machine type:
+```
+$ docker images -a
+```
+To remove an image type:
+```
+$ docker rmi -f <image name or id>
+```
+To remove all images type:
+```
+$ docker rmi -f $(docker images -a)
+```
+To clean the cache and remove not used images type:
+```
+$ docker system prune -a
+```
+### PostgreSQL
+The database and the web application should be installed on different machines for the production but for the developing, the database can be installed on the machine with the web application.  
+  
+To install PostgreSQL type:
+```
+$ sudo apt-get install postgresql postgresql-contrib
+```
+
+Create the database user for the application:
+```
+$ sudo su - postgres
+postgres@name:~$ createuser --interactive -P
+Enter name of role to add: <your_app_user>
+Enter password for new role: 
+Enter it again: 
+Shall the new role be a superuser? (y/n) n
+Shall the new role be allowed to create databases? (y/n) n
+Shall the new role be allowed to create more new roles? (y/n) n
+postgres@name:~$
+
+postgres@name:~$ createdb --owner <your_app_user> <user_default_db_name>
+postgres@name:~$ logout
+$
+```
 
 ### Django
+If Django is used for the web application run commands below to create migrations in the database:
+```
+$ python <PATH/TO/POJECT>/manage.py makemigrations
+$ python <PATH/TO/POJECT>/manage.py migrate
+```
+### PRoot
+If you do not have the root access and the user is not in the docker group [PRoot](https://wiki.archlinux.org/index.php/PRoot) tool can be used to run another Linux system inside host system, and root access will be available for this system. Use [--kernel-release](https://github.com/proot-me/PRoot/blob/master/doc/proot/manual.txt) option for PRoot if the kernel vesrion of host sysytem is not compatible with docker.
+
+To install it type:
+```
+$ sudo apt-get install proot
+```
+or build it from [source](https://github.com/proot-me/PRoot) (do 'make' in src/ folder).  
+  
+To create filesystem for proot you can use [QEMU](https://www.qemu.org/) (see below)
+  
+The best way to run command in proot filesystem:
+```
+$ proot -r <path/to/filesystem> <comand>
+```
+If you have no internet connection from proot filesystem (for example, 'unable to resolve host address' error running wget) try to put 'nameserver 8.8.8.8' to the first line of /etc/resolv.conf  
+If the proot filesystem is old with support expired change repositories list for it (for example, for old Ubuntu vesions that are not currently supported, replace archive.ubuntu.com with old-releases.ubuntu.com in /etc/apt/sources.list)
+### QEMU
+This tip is for x86_64 system building. However, it can be any system you need. For arm systems this process seems to be more complicated.  
+  
+To install it type:
+```
+$ sudo apt-get install qemu-kvm qemu virt-manager virt-viewer libvirt-bin
+```
+  
+Create virtual filesystem:
+```
+$ qemu-img create <fs_name>.img <img_size>  # for example, <img_size> = 5G
+```
+Install Linux system .iso image into created filesystem:
+```
+$ qemu-system-x86_64 -drive file=<fs_name>.img,index=0,media=disk,format=raw -boot d -cdrom <path/to/image>.iso -m <memory_amount>  # for eaxample <memory_amount> = 2G
+```
+To run the filesystem type:
+```
+$ qemu-system-x86_64 -drive file=<fs_name>.img,index=0,media=disk,format=raw -m <memoty_amount> -fsdev local,id=host_ds,path=<host/path/to/shared/folder>,security_model=none -device virtio-9p-pci,fsdev=host_fs,mount_tag=host_shared
+```
+This command will seem to be not working, be patient - wait and the system will start (at least x86_64).  
+  
+ After login to the virtual system type comand below to mount shared folder (in virtual system):
+ ```
+ $ sudo mkdir /mnt/shared
+ $ sudo mount -t 9p -o trans=virtio host_shared /mnt/shared/ -oversion=9p2000.L
+ ```
+If you need the filesystem for PRoot create archive (for example, .tar.gz) of the virtual filesystem and place it to the directory where shared folder mounted (/mnt/shared/). The archive of filesystem should appear in the host directory that is shared with QEMU virtual machine.
+
+### RPM packages
+Linux programs can be installed from rpm packages. Download required rpm package build for the system. Then use following bash script to unpack it:
+```
+# $1 - rpm package path
+# $2 - installation dir path
+
+LOC=$(pwd)
+CPIO=$(basename $2).cpio
+rpm2cpio $1 > $CPIO
+cd $2 && cpio -idv < $LOC/$CPIO
+rm $LOC/$CPIO
+```
+Note that a program in rpm package is build as it is located in /usr/. That is usr/ folder will be in installation folder. So the paths in configs should be fixed.
