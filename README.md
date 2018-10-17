@@ -74,38 +74,61 @@ docker-compose -f BUILDDIR_PATH/docker-compose.yml start
 ```
 
 ## Tips for environment configuration
+The tips are for systems with apt package manager (Debian based). For systems without apt use other builtin package managers. Note that required packages can have other names.
 ### Docker
-To install Docker on system with apt package manager type:
+To install Docker type:
 ```
 sudo apt-get install docker docker.io docker-compose
 ```
-For systems without apt use other builtin package managers. Note that required packages can have other names  
-  
+
 Add the user runs docker image to a docker group:
 ```
-sudo groupadd docker  # create docker group if it has not done
-sudo adduser <youruser>  # create the user if it has not been done
-sudo usermod -aG docker <youruser>
+$ sudo groupadd docker  # create docker group if it has not done
+$ sudo adduser <youruser>  # create the user if it has not been done
+$ sudo usermod -aG docker <youruser>
 ```
 Log out and log back in so that your group membership is re-evaluated  
   
 To list all docker images on the machine type:
 ```
-docker images -a
+$ docker images -a
 ```
 To remove an image type:
 ```
-docker rmi -f <image name or id>
+$ docker rmi -f <image name or id>
 ```
 To remove all images type:
 ```
-docker rmi -f $(docker images -a)
+$ docker rmi -f $(docker images -a)
 ```
 To clean the cache and remove not used images type:
 ```
-docker system prune -a
+$ docker system prune -a
 ```
 ### PostgreSQL
+A database and a web application should be installed on different machines for the production but for the developing, a database can be installed on the machine with a web application.  
+  
+To install PostgreSQL type:
+```
+$ sudo apt-get install postgresql postgresql-contrib
+```
+
+Create the database user for the application:
+```
+$ sudo su - postgres
+postgres@name:~$ createuser --interactive -P
+Enter name of role to add: <your_app_user>
+Enter password for new role: 
+Enter it again: 
+Shall the new role be a superuser? (y/n) n
+Shall the new role be allowed to create databases? (y/n) n
+Shall the new role be allowed to create more new roles? (y/n) n
+postgres@name:~$
+
+postgres@name:~$ createdb --owner <your_app_user> <default_user_db_name>
+postgres@name:~$ logout
+$
+```
 
 ### Django
 
