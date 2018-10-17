@@ -136,8 +136,8 @@ If Django is used for the web application run commands below to create migration
 $ python <PATH/TO/POJECT>/manage.py makemigrations
 $ python <PATH/TO/POJECT>/manage.py migrate
 ```
-### Proot
-If you do not have the root access and the user is not in the docker group [proot](https://wiki.archlinux.org/index.php/PRoot) tool can be used to run another Linux system inside host system, and root access will be available for this system. Use [--kernel-release](https://github.com/proot-me/PRoot/blob/master/doc/proot/manual.txt) option for proot if the kernel vesrion of host sysytem is not compatible with docker.
+### PRoot
+If you do not have the root access and the user is not in the docker group [PRoot](https://wiki.archlinux.org/index.php/PRoot) tool can be used to run another Linux system inside host system, and root access will be available for this system. Use [--kernel-release](https://github.com/proot-me/PRoot/blob/master/doc/proot/manual.txt) option for PRoot if the kernel vesrion of host sysytem is not compatible with docker.
 
 To install it type:
 ```
@@ -145,16 +145,36 @@ $ sudo apt-get install proot
 ```
 or build it from [source](https://github.com/proot-me/PRoot) (do "make" in src/ folder).  
   
-To create filesystem for proot you can use [qemu](https://www.qemu.org/):
-```
-.iso -> .img -> .tar.gz  
-```
+To create filesystem for proot you can use [QEMU](https://www.qemu.org/) (see below)
   
 The best way to run command in proot filesystem:
 ```
 $ proot -r <path/to/filesystem> <comand>
 ```
+If you have no interner connection from proot filesystem (for example, 'unable to resolve host address' error running wget) try to put nameserver 8.8.8.8 to the first line of /etc/resolv.conf  
+If the proot filesystem is old with support expired change repositories list for it (for example, for old Ubuntu vesions that are not currently supported, replace archive.ubuntu.com with old-releases.ubuntu.com in /etc/apt/sources.list)
+### QEMU
+This tip is for x86_64 system building. However, it can be any system you need.  
   
+To install it type:
+```
+sudo apt-get install qemu-kvm qemu virt-manager virt-viewer libvirt-bin
+```
+  
+Create virtual filesystem:
+```
+qemu-img create <fs_name>.img <img_size>  # for example, <img_size> = 5G
+```
+Install Linux system .iso image into created filesystem:
+```
+qemu-system-x86_64 -hda <fs_name>.img -boot d -cdrom <path/to/image>.iso -m <memory_amount>
+```
+To run the filesystem type:
+```
+
+```
+.iso -> .img -> .tar.gz  
+
 ### RPM packages
 Linux programs can be installed from rpm packages. Download required rpm package build for the system. Then use following bash script to unpack it:
 ```
