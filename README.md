@@ -181,10 +181,10 @@ Linux programs can be installed from rpm packages. Download required rpm package
 # $1 - rpm package path
 # $2 - installation dir path
 
-loc=$(pwd)
-cpio=$(basename $2).cpio
-rpm2cpio $1 > $cpio
-cd $2 && cpio -idv < $loc/$cpio
-rm $loc/$cpio
+LOC=$(pwd)
+CPIO=$(basename $2).cpio
+rpm2cpio $1 > $CPIO
+cd $2 && cpio -idv < $LOC/$CPIO
+rm $LOC/$CPIO
 ```
 Note that a program in rpm package is build as it is located in /usr/. That is usr/ folder will be in installation folder. So the paths in configs should be fixed.
