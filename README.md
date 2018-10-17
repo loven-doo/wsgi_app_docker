@@ -154,7 +154,7 @@ $ proot -r <path/to/filesystem> <comand>
 If you have no internet connection from proot filesystem (for example, 'unable to resolve host address' error running wget) try to put 'nameserver 8.8.8.8' to the first line of /etc/resolv.conf  
 If the proot filesystem is old with support expired change repositories list for it (for example, for old Ubuntu vesions that are not currently supported, replace archive.ubuntu.com with old-releases.ubuntu.com in /etc/apt/sources.list)
 ### QEMU
-This tip is for x86_64 system building. However, it can be any system you need.  
+This tip is for x86_64 system building. However, it can be any system you need. For arm systems this process seems to be more complicated.  
   
 To install it type:
 ```
@@ -171,9 +171,16 @@ $ qemu-system-x86_64 -drive file=<fs_name>.img,index=0,media=disk,format=raw -bo
 ```
 To run the filesystem type:
 ```
-$ qemu-system-x86_64 -hda <fs_name>.img -m <memoty_amount> -fsdev local,id=host_ubuntu,path=qemu_shared/,security_model=none
+$ qemu-system-x86_64 -drive file=<fs_name>.img,index=0,media=disk,format=raw -m <memoty_amount> -fsdev local,id=host_ds,path=<host/path/to/shared/folder>,security_model=none -device virtio-9p-pci,fsdev=host_fs,mount_tag=host_shared
 ```
-.iso -> .img -> .tar.gz  
+This command will seem to be not working, be patient - wait and the system will start (at least x86_64).  
+  
+ After login to the virtual system type comand below to mount shared folder (in virtual system):
+ ```
+ $ sudo mkdir /mnt/shared
+ $ sudo mount -t 9p -o trans=virtio host_shared /mnt/shared/ -oversion=9p2000.L
+ ```
+If you need the filesystem for PRoot create archive (for example, .tar.gz) of the virtual filesystem and place it to directory where shared folder mounted (/mnt/shared/). The archive of filesystem should appear in the host directory that is shared with QEMU virtual machine.
 
 ### RPM packages
 Linux programs can be installed from rpm packages. Download required rpm package build for the system. Then use following bash script to unpack it:
