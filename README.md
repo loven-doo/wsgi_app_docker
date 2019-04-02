@@ -171,7 +171,7 @@ $ qemu-system-x86_64 -drive file=<fs_name>.img,index=0,media=disk,format=raw -bo
 ```
 To run the filesystem type:
 ```
-$ qemu-system-x86_64 -drive file=<fs_name>.img,index=0,media=disk,format=raw -m <memoty_amount> -fsdev local,id=host_ds,path=<host/path/to/shared/folder>,security_model=none -device virtio-9p-pci,fsdev=host_fs,mount_tag=host_shared
+$ qemu-system-x86_64 -drive file=<fs_name>.img,index=0,media=disk,format=raw -m <memoty_amount> -fsdev local,id=host_fs,path=<host/path/to/shared/folder>,security_model=none -device virtio-9p-pci,fsdev=host_fs,mount_tag=host_shared
 ```
 This command will seem to be not working, be patient - wait and the system will start (at least x86_64).  
   
